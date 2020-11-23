@@ -1,0 +1,56 @@
+---
+name: 'Deployment Metrics'
+description: 'Send deployment metrics to the DM API'
+
+inputs:
+  dm_token:
+    description: 'Token for access to the Deployment Metrics API'
+    required: true
+  name:
+    description: 'The name of the artifact being deployed'
+    required: true
+  version:
+    description: 'Version number of the deployed artifact'
+    required: true
+  statusPage:
+    description: 'Link to the status page of the Product or Capability area'
+    required: true
+    default: ''
+  repositoryUrl:
+    description: 'Link to where the repository'
+    required: true
+  commitSha:
+    description: 'The SHA of the commit that is deployed'
+    required: true
+  environment:
+    description: 'The name of the environment to create the deployment for'
+    required: true
+  status:
+    description: 'The status of the deployment'
+    required: false
+  productName:
+    description: 'The name of the Product this deployment belongs to'
+    required: true
+  capabilityName:
+    description: 'The name of the Business Capability this deployment belongs to'
+    required: true
+  depid:
+    description: 'An id of the sibling deployment'
+    required: false
+    default: ""
+  server:
+    description: 'The server URL'
+    required: true
+  verbose:
+    description: 'Verbose output, true or false'
+    required: false
+
+outputs:
+  location:
+    description: 'The location of the created deployment'
+  depid:
+    description: 'The id of the created deployment'
+
+runs:
+    using: 'node12'
+    main: 'dist/index.js'

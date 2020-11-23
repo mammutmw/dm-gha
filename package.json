@@ -1,0 +1,25 @@
+{
+  "name": "dm-gha",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mammutmw/dm-gha.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mammutmw/dm-gha/issues"
+  },
+  "homepage": "https://github.com/mammutmw/dm-gha#readme",
+  "dependencies": {
+    "@actions/core": "^1.2.6",
+    "@actions/github": "^4.0.0"
+  },
+  "devDependencies": {},
+  "description": ""
+}
