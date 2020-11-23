@@ -5,7 +5,7 @@ on:
     branches: [ master ]
 
 jobs:
-  dm_tetric_test:
+  dm_metric_test:
     runs-on: ubuntu-latest
     name: Run deploy metric test
     steps:
@@ -16,5 +16,17 @@ jobs:
         id: test
         with:
           verbose: 'true'
+          dm_token: ${{ secrets.LOCAL_EXTENSIONS_DM_PROD_TOKEN }}
+          server: ${{ secrets.LOCAL_EXTENSIONS_DM_SERVER }}
+          name: 'test'
+          version: '0.0.1'
+          statusPage: 'https://my.status.page/'
+          repositoryUrl: 'https://my.git.repo/'
+          commitSha: 'abcdef'
+          environment: 'development'
+          status: 'created'
+          productName: 'test'
+          capabilityName: 'CMP'
+
       - name: Get output
         run: echo "${{ steps.test.outputs.location }}"
