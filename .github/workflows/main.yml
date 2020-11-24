@@ -15,8 +15,6 @@ jobs:
       - name: Start DM
         id: start_dm
         uses: ./ 
-        with:
-          status: 'created'
 
       - name: Update DM
         id: update_dm

@@ -46,8 +46,6 @@ async function sendMetric(params) {
 }
 
 async function exec() {
-    console.log(`Action started: ${new Date().toTimeString()}`);
-
     const verbose = core.getInput('verbose');
     const dm_token = core.getInput('dm_token');
     const server = core.getInput('server');
@@ -65,11 +63,11 @@ async function exec() {
     const depid = core.getInput('depid');
 
     if (verbose === 'true') {
-        const payload = JSON.stringify(github.context.payload, undefined, 2);
-        console.log(`The event payload: ${payload}`);
+        console.log(`Action started: ${new Date().toTimeString()}`);
+        console.log(JSON.stringify(github.context.payload, undefined, 2));
     }
 
-    if (status === 'created') {
+    if (status === 'created' || status === '') {
         const createdAt = new Date().toISOString();
         console.log(`createdAt: ${createdAt}`);
         console.log(`githubRepositoryName: ${github.context.payload.repository.name}`);
@@ -81,7 +79,6 @@ async function exec() {
     }
 
     const metricParams = {
-        verbose,
         dm_token,
         server,
         name,
