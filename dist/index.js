@@ -10,11 +10,6 @@ const github = __webpack_require__(16);
 const fetch = __webpack_require__(460);
 
 async function sendMetric(params) {
-    if (params.verbose === 'true') {
-        const payload = JSON.stringify(github.context.payload, undefined, 2);
-        console.log(`The event payload: ${payload}`);
-    }
-
     try {
         const response = await fetch(params.server, {
             method: 'POST',
@@ -76,10 +71,19 @@ async function exec() {
     const capabilityName = core.getInput('capabilityName');
     const depid = core.getInput('depid');
 
+    if (params.verbose === 'true') {
+        const payload = JSON.stringify(github.context.payload, undefined, 2);
+        console.log(`The event payload: ${payload}`);
+    }
+
     if (status === 'created') {
         const createdAt = new Date().toISOString();
         console.log(`createdAt: ${createdAt}`);
+        console.log(`githubRepositoryName: ${github.context.payload.repository.name}`);
+        console.log(`githubRepositoryHtmlUrl: ${github.context.payload.repository.html_url}`);
         core.setOutput('createdAt', createdAt);
+        core.setOutput('githubRepositoryName', github.context.payload.repository.name);
+        core.setOutput('githubRepositoryHtmlUrl', github.context.payload.repository.html_url);
         return;
     }
 
