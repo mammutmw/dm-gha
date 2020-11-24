@@ -64,7 +64,7 @@ async function exec() {
     const capabilityName = core.getInput('capabilityName');
     const depid = core.getInput('depid');
 
-    if (params.verbose === 'true') {
+    if (verbose === 'true') {
         const payload = JSON.stringify(github.context.payload, undefined, 2);
         console.log(`The event payload: ${payload}`);
     }
