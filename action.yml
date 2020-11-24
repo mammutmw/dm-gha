@@ -9,6 +9,9 @@ inputs:
   name:
     description: 'The name of the artifact being deployed'
     required: true
+  createdAt:
+    description: 'ISO time for deployment start'
+    required: true
   version:
     description: 'Version number of the deployed artifact'
     required: true
