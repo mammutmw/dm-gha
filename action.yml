@@ -49,6 +49,12 @@ inputs:
     required: false
 
 outputs:
+  createdAt:
+    description: 'ISO time of deployment start'
+  githubRepositoryName:
+    description: 'The name of the repository'
+  githubRepositoryHtmlUrl:
+    description: 'The html URL to the repository'
   location:
     description: 'The location of the created deployment'
   depid:
