@@ -11,22 +11,29 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Test
-        uses: ./
-        id: test
+
+      - name: Start DM
+        id: start_dm
+        uses: ./ 
+        with:
+          status: 'created'
+
+      - name: Update DM
+        id: update_dm
+        uses: ./ 
         with:
           verbose: 'true'
           dm_token: ${{ secrets.LOCAL_EXTENSIONS_DM_PROD_TOKEN }}
           server: ${{ secrets.LOCAL_EXTENSIONS_DM_SERVER }}
-          name: 'test'
-          version: '0.0.1'
-          statusPage: 'https://my.status.page/'
-          repositoryUrl: 'https://my.git.repo/'
-          commitSha: 'abcdef'
+          createdAt: ${{ steps.start_dm.outputs.createdAt }}
+          name: 'dm-gha'
+          version: 'master'
+          repositoryUrl: 'https://github/mammutmw/dm-gha'
+          commitSha: '${{github.sha}}'
           environment: 'development'
-          status: 'created'
-          productName: 'test'
+          status: 'success'
+          productName: 'dm-gha'
           capabilityName: 'CMP'
 
       - name: Get output
-        run: echo "${{ steps.test.outputs.location }}"
+        run: echo "${{ steps.update.outputs.location }}"
