@@ -67,6 +67,7 @@ async function exec() {
         console.log(JSON.stringify(github.context.payload, undefined, 2));
     }
 
+    // Set outputs by just calling the action with no parameters
     if (status === 'created' || status === '') {
         const createdAt = new Date().toISOString();
         console.log(`createdAt: ${createdAt}`);
@@ -75,6 +76,23 @@ async function exec() {
         core.setOutput('createdAt', createdAt);
         core.setOutput('githubRepositoryName', github.context.payload.repository.name);
         core.setOutput('githubRepositoryHtmlUrl', github.context.payload.repository.html_url);
+
+        const branch = location.split('/').pop();
+        let localExtensionEnvironment = 'local';
+        switch (branch) {
+            case 'master':
+                localExtensionEnvironment = 'cte'
+                break;
+            case 'release':
+                localExtensionEnvironment = 'production'
+                break;
+            case 'staging':
+                localExtensionEnvironment = 'ppe'
+                break;
+            default:
+                break;
+        }
+        core.setOutput('localExtensionEnvironment', localExtensionEnvironment);
         return;
     }
 
