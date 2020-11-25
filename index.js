@@ -92,6 +92,7 @@ async function exec() {
             default:
                 break;
         }
+        console.log(`localExtensionEnvironment: ${localExtensionEnvironment}`);
         core.setOutput('localExtensionEnvironment', localExtensionEnvironment);
         return;
     }
