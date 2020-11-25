@@ -77,7 +77,7 @@ async function exec() {
         core.setOutput('githubRepositoryName', github.context.payload.repository.name);
         core.setOutput('githubRepositoryHtmlUrl', github.context.payload.repository.html_url);
 
-        const branch = location.split('/').pop();
+        const branch = github.context.payload.ref.split('/').pop();
         let localExtensionEnvironment = 'local';
         switch (branch) {
             case 'master':
